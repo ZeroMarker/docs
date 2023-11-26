@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 int main() {
   // Declare a local variable
   int x = 10;
@@ -9,6 +12,7 @@ int main() {
   // Use the local variable and the object
   printf("x = %d, y = %d\n", x, *y);
 
+  printf("x -> %p, y -> %p\n", &x, y);
   // Deallocate memory on the heap for the object
   free(y);
 
