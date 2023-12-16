@@ -17,3 +17,8 @@
 [进击的java菜鸟](https://fhfirehuo.github.io/Attacking-Java-Rookie/)
 
 [OI Wiki](https://oi-wiki.org/)
+
+[小林 Coding](https://www.xiaolincoding.com/)
+
+[Java Guide](https://javaguide.cn/)
+
