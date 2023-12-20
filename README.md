@@ -26,5 +26,9 @@
 
 [【计算机科学速成课】[40集全/精校] - Crash Course Computer Science](https://www.bilibili.com/video/BV1EW411u7th/)
 
+[开源世界旅行手册](https://i.linuxtoy.org/docs/guide/index.html)
 
+[MDN](https://developer.mozilla.org/en-US/)
+
+[Microsoft Learn](https://learn.microsoft.com/zh-cn/)
 
