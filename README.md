@@ -32,3 +32,12 @@
 
 [Microsoft Learn](https://learn.microsoft.com/zh-cn/)
 
+[主页 | Java学习&面试指南-程序员大彬](https://topjavaer.cn/)
+
+[programiz](https://www.programiz.com/)
+
+[godbolt](https://godbolt.org/)
+
+[myCompiler](https://www.mycompiler.io/)
+
+
