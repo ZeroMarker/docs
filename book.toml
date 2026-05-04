@@ -1,0 +1,9 @@
+[book]
+authors = ["notes"]
+language = "zh"
+src = "src"
+title = "个人笔记"
+
+[output.html]
+git-repository-url = "https://github.com/ZeroMarker/docs"
+edit-url-template = "https://github.com/ZeroMarker/docs/edit/main/{path}"
