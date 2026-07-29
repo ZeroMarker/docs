@@ -56,4 +56,4 @@ dkms.conf
 
 # mdBook output
 book/
-
+src/SUMMARY.md
