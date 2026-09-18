@@ -16,6 +16,7 @@
 - [数学](math/)
 - [媒体](media/)
 - [音乐](music/)
+- [心理](psychology/)
 - [政治](politics/)
 - [SIM 卡](sim/)
 - [技术](tech/)
