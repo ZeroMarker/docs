@@ -54,6 +54,5 @@ dkms.conf
 # debug information files
 *.dwo
 
-# mdBook output
-book/
-src/SUMMARY.md
+# Documentation output
+site/
