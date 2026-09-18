@@ -29,6 +29,7 @@
 | 国家或地区 | 主要系统或品牌 | 常见使用方式 | 特点 |
 | --- | --- | --- | --- |
 | 欧元区及 SEPA 参与地区 | SEPA Instant Credit Transfer（SCT Inst）；TIPS、RT1 等 | IBAN、银行 App，部分国家另有手机号别名 | 欧元通常在 10 秒内到账；欧盟法规要求即时转账收费不得高于同类普通转账，并逐步强制提供收付款与收款人核验 |
+| 欧洲部分市场 | [Wero](欧洲-Wero.md) | 手机号、邮箱、二维码、银行 App 或 Wero App | EPI 推出的泛欧洲钱包与支付方案，基于即时 A2A 转账；已在比利时、法国和德国上线，并向卢森堡、荷兰扩展 |
 | 英国 | Faster Payments Service（FPS） | sort code + account number、手机银行；Paym 已停止 | 覆盖个人转账、账单和企业支付；银行通常会做收款人姓名核验 |
 | 瑞典 | BiR / RIX-INST；Swish | 手机号、二维码 | Swish 是用户熟悉的入口，底层结算基础设施已向 RIX-INST 演进 |
 | 挪威 | Straksbetalinger；Vipps | 手机号、二维码 | Vipps 将个人转账和商户付款整合在同一 App 中 |
