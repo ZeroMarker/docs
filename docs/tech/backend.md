@@ -308,7 +308,7 @@ async fn get_user(axum::extract::Path(id): axum::extract::Path<u32>) -> String {
 
 #[tokio::main]
 async fn main() {
-    let app = Router::new().route("/users/:id", get(get_user));
+    let app = Router::new().route("/users/{id}", get(get_user));
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
     axum::serve(listener, app).await.unwrap();
 }
@@ -449,6 +449,6 @@ Rust (Axum/Actix) > Go (Gin/Fiber) > Node.js (Fastify) > Python (FastAPI) > Java
 - [NestJS 官方文档](https://docs.nestjs.com/)
 - [FastAPI 官方文档](https://fastapi.tiangolo.com/)
 - [Django 官方文档](https://www.djangoproject.com/)
-- [Gin 官方文档](https://gin-gonic.com/docs/)
+- [Gin 官方文档](https://gin-gonic.com/en/docs/)
 - [Axum 官方文档](https://docs.rs/axum/latest/axum/)
 - [Spring Boot 官方文档](https://spring.io/projects/spring-boot)

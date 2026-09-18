@@ -31,7 +31,7 @@
 | AI 集成 | Copilot / Cline | AI Assistant | Avante / Codeium | 原生（多模型） | 原生（多模型） |
 | 远程开发 | Remote SSH / Dev Containers | Gateway / Remote Dev | SSH 原生 | SSH | SSH |
 | 价格 | 免费 | 付费（订阅） | 免费 | 付费 | 免费（开源） |
-| 扩展生态 | 最丰富（50K+） | 丰富（7K+） | Lua 插件 | 兼容 VS Code | 兼容 VS Code |
+| 扩展生态 | 最丰富 | 丰富 | Lua 插件 | 基于 VS Code 生态 | 独立扩展系统，规模较小 |
 
 **选型建议**：
 - 日常开发 → **VS Code**（生态最全）或 **Cursor**（AI 增强）
@@ -66,9 +66,9 @@
 | 语言 | Node.js | Node.js | Node.js | 多语言 |
 | 安装速度 | 慢 | 快 | 中等 | 极快 |
 | 磁盘占用 | 高（重复安装） | 低（硬链接 + store） | 中等 | 低 |
-| Lock 文件 | package-lock.json | pnpm-lock.yaml | yarn.lock | bun.lockb（二进制） |
+| Lock 文件 | package-lock.json | pnpm-lock.yaml | yarn.lock | bun.lock（文本） |
 | Monorepo | workspaces | workspaces（原生） | workspaces | bun workspaces |
-| 严格模式 | 否 | 是（默认隔离） | 否 | 是（默认隔离） |
+| 依赖布局 | 默认扁平提升 | 默认隔离 | 默认扁平提升 | 新工作区默认隔离；单包项目默认提升 |
 | Node 兼容性 | 100% | 高 | 高 | 高（大部分） |
 
 **选型建议**：

@@ -27,7 +27,7 @@
 
 - [Material Theme Builder](https://m3.material.io/theme-builder)
 - [Figma UI Kit](https://www.figma.com/community)（官方维护）
-- [material-web](https://github.com/nickreese/material-web) — Web Components 实现
+- [material-web](https://github.com/material-components/material-web) — Web Components 实现
 
 ---
 
@@ -40,13 +40,13 @@
 | Fluent Design | 2017 | 伴随 Windows 10 Fall Creators Update 发布 |
 | Fluent UI | 2020 | 统一为 Web 组件库，跨平台 |
 | Fluent UI React v9 | 2022 | 完整 token 化、Griffel CSS-in-JS |
-| Fluent UI React v9.6+ | 2025 | Copilot 设计融合、AI 可适应性 |
+| Fluent UI React v9 | 持续更新 | 基于 design token 的 React 组件体系 |
 
 ### 核心理念
 
 - **五要素**：光（Light）、深度（Depth）、运动（Motion）、材质（Material）、缩放（Scale）
 - **系统优先**：为 Microsoft 365（Teams、Outlook、Edge、Windows）的庞大生态服务
-- **无障碍**：从第一天就内建 WCAG 2.1 AA 合规
+- **无障碍**：组件提供无障碍基础，但最终是否符合 WCAG 仍取决于产品实现与测试
 
 ### 视觉特征
 
@@ -113,9 +113,9 @@
 
 1. **Token 化**：三者都已将颜色、间距、圆角抽象为 design tokens，支持跨平台同步
 2. **Dark Mode 一等公民**：不再是附加功能，从第一天就内建
-3. **无障碍**：WCAG 2.1 AA 成为底线要求，高对比度模式被纳入核心
+3. **无障碍**：WCAG AA 常被作为产品目标；仍需针对实际内容、交互和辅助技术进行测试
 4. **AI 可适应性**：Microsoft 已开始探索 Copilot 风格的 AI-first 界面；Material You 的 dynamic color 本身就是个性化的雏形
-5. **空间计算**：Apple 的 visionOS HIG 是目前唯一系统的空间 UI 规范
+5. **空间计算**：Apple 的 visionOS HIG 是较完整的平台级空间界面规范之一
 
 ---
 

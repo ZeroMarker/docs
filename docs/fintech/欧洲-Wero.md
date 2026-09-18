@@ -13,7 +13,7 @@ Wero 是欧洲支付倡议（European Payments Initiative，EPI）推出的泛�
 
 Wero 于 2024 年首先在比利时、法国和德国上线个人对个人（P2P）转账。在线商户付款已在这三个市场逐步推出，但是否可用仍取决于用户的银行和商户是否接入。
 
-2026 年 9 月，卢森堡正将 Payconiq 分阶段迁移到 Wero；荷兰也已开始从 iDEAL 向 Wero 过渡。因此，Wero 并非已在整个欧洲普遍可用，实际使用前应查询开户银行和商户的最新支持情况。
+截至 2026 年 9 月，卢森堡正在由参与银行分阶段把 Payconiq 用户迁移到 Wero。荷兰则处于 iDEAL 与 Wero 的品牌和产品迁移过程，具体功能、银行与商户接入节奏并不等同于卢森堡。因此，Wero 并非已在整个欧洲普遍可用，使用前应查询开户银行和商户的最新支持情况。
 
 ## 与其他支付方式的区别
 
@@ -31,6 +31,7 @@ Wero 个人转账在授权后通常不能撤销。付款前应核对收款人姓
 ## 资料来源
 
 - [Wero 官方：Wero 如何工作](https://support.wero-wallet.eu/hc/en-us/articles/25599111891729-What-is-Wero-and-how-does-it-work)
+- [Wero 官方：个人转账帮助中心](https://support.wero-wallet.eu/hc/en-us/categories/25598580019473-Send-and-receive-money)
 - [Wero 官方：可在哪些国家进行在线付款](https://support.wero-wallet.eu/hc/en-us/articles/39413182279569-In-which-countries-can-I-pay-online-with-Wero)
 - [EPI：Wero 在卢森堡上线并承接 Payconiq](https://epicompany.eu/media-insights/epi-initiates-wero-in-luxembourg/)
 - [EPI：Wero 在荷兰启动 iDEAL 迁移](https://epicompany.eu/media-insights/wero-launches-in-the-netherlands)

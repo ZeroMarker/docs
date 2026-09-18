@@ -6,7 +6,7 @@
 
 ### Clash Verge Rev
 
-- **GitHub**：clash-verge-rev/clash-verge-rev（⭐ 127k）
+- **GitHub**：clash-verge-rev/clash-verge-rev
 - **内核**：Clash Meta（Mihomo）
 - **UI**：基于 Tauri 框架，体积小、资源占用低，界面现代化
 - **特色**：支持 TUN 模式、配置文件编辑、订阅管理、规则分流可视化
@@ -14,37 +14,37 @@
 
 ### Clash Party
 
-- **GitHub**：mihomo-party-org/clash-party（⭐ 24.8k）
+- **GitHub**：mihomo-party-org/clash-party
 - **内核**：Clash Meta（Mihomo）
 - **UI**：基于 Electron，偏向 macOS 风格，交互体验流畅
 - **现状**：用户群体相对较小
 
 ### Clash Nyanpasu
 
-- **GitHub**：libnyanpasu/clash-nyanpasu（⭐ 13k）
+- **GitHub**：libnyanpasu/clash-nyanpasu
 - **内核**：Clash Meta（Mihomo）
 - **UI**：基于 Tauri，Material You 设计语言，视觉效果精致
 - **特色**：支持 Clash Meta 和 Clash RS 双内核切换
 
 ### FlClash
 
-- **GitHub**：chen08209/FlClash（⭐ 43k）
+- **GitHub**：chen08209/FlClash
 - **内核**：Clash Meta（Mihomo）
 - **UI**：基于 Flutter，一套代码覆盖桌面和移动端
 - **适合**：希望桌面和手机使用同一款客户端体验的用户
 
 ### v2rayN
 
-- **GitHub**：2dust/v2rayN（⭐ 110k）
+- **GitHub**：2dust/v2rayN
 - **平台**：Windows / Linux / macOS
 - **内核**：支持 Xray、sing-box、v2fly 等多内核
 - **UI**：基于 C# / .NET，Windows 风格
 - **特色**：支持 VMess、VLESS、Trojan、Shadowsocks、XTLS 等协议，功能全面
-- **现状**：V2Ray 生态最流行的 GUI 客户端，更新极为频繁
+- **现状**：V2Ray 生态中较活跃的 GUI 客户端之一；维护状态应以仓库为准
 
 ### V2rayU
 
-- **GitHub**：yanue/V2rayU（⭐ 20k）
+- **GitHub**：yanue/V2rayU
 - **平台**：macOS
 - **内核**：V2Ray Core
 - **UI**：原生 Swift 开发，macOS 风格菜单栏应用
@@ -52,7 +52,7 @@
 
 ### v2rayA
 
-- **GitHub**：v2rayA/v2rayA（⭐ 15.2k）
+- **GitHub**：v2rayA/v2rayA
 - **平台**：Linux
 - **内核**：支持 Xray-core、sing-box
 - **UI**：Web GUI，通过浏览器访问 `http://localhost:2017` 管理
@@ -60,7 +60,7 @@
 
 ### Qv2ray
 
-- **GitHub**：Qv2ray/Qv2ray（⭐ 16.9k）
+- **GitHub**：Qv2ray/Qv2ray
 - **平台**：Windows / Linux / macOS
 - **内核**：V2Ray Core
 - **UI**：C++ / Qt5，插件式架构
@@ -69,7 +69,7 @@
 
 ### Oblivion Desktop
 
-- **GitHub**：bepass-org/oblivion-desktop（⭐ 8.3k）
+- **GitHub**：bepass-org/oblivion-desktop
 - **平台**：Windows / macOS / Linux
 - **内核**：sing-box
 - **特色**：Cloudflare WARP 非官方客户端，基于 WireGuard 协议，免费可用
@@ -77,7 +77,7 @@
 
 ### GUI.for.SingBox
 
-- **GitHub**：GUI-for-Cores/GUI.for.SingBox（⭐ 7.9k）
+- **GitHub**：GUI-for-Cores/GUI.for.SingBox
 - **平台**：Windows / macOS / Linux
 - **内核**：sing-box
 - **UI**：Wails（Go）+ Vue 3，轻量现代
@@ -85,7 +85,7 @@
 
 ### Throne
 
-- **GitHub**：throneproj/Throne（⭐ 6.2k）
+- **GitHub**：throneproj/Throne
 - **平台**：Windows / macOS / Linux
 - **内核**：sing-box
 - **UI**：C++ 开发，跨平台
@@ -95,17 +95,17 @@
 
 ### NekoBox
 
-- **GitHub**：MatsuriDayo/NekoBoxForAndroid（⭐ 21.5k）
+- **GitHub**：MatsuriDayo/NekoBoxForAndroid
 - **内核**：sing-box
 - **特色**：支持 Shadowsocks、VMess、VLESS、Trojan、Hysteria 2、TUIC 等协议，支持 TUN 模式
 - **现状**：Android 端首选客户端之一，替代了早期的 SagerNet
 
 ### v2rayNG
 
-- **GitHub**：2dust/v2rayNG（⭐ 58.4k）
+- **GitHub**：2dust/v2rayNG
 - **内核**：Xray-core、v2fly-core
 - **特色**：支持 VMess、VLESS、Trojan、Shadowsocks、XTLS，功能与 v2rayN 对齐
-- **现状**：Android 端下载量最大的 V2Ray 客户端
+- **现状**：Android 上较常见的 V2Ray/Xray 客户端之一
 
 ## Apple 端（iOS / macOS）
 
@@ -118,15 +118,15 @@
 ### Shadowrocket（小火箭）
 
 - **平台**：iOS / macOS
-- **价格**：付费（美区 App Store 约 $2.99）
+- **价格**：付费；价格与可用地区以当前 App Store 页面为准
 - **特色**：iOS 上最老牌的代理客户端，支持 SS、VMess、VLESS、Trojan、Hysteria 2 等，分流规则灵活
-- **现状**：iOS 端用户量最大的代理客户端
+- **现状**：iOS 上较常见的代理客户端之一
 
 ### Quantumult X（圈 X）
 
 - **平台**：iOS / macOS
-- **价格**：付费（美区 App Store 约 $7.99）
-- **特色**：功能最强大的 iOS 代理客户端，支持脚本、重写、MITM、Task 定时任务
+- **价格**：付费；价格与可用地区以当前 App Store 页面为准
+- **特色**：提供脚本、重写、MITM、Task 定时任务等高级功能
 - **适合**：高级用户，需要去广告、脚本自动化等
 
 ### Surge
@@ -146,7 +146,7 @@
 
 ### OpenClash
 
-- **GitHub**：vernesong/OpenClash（⭐ 26.4k）
+- **GitHub**：vernesong/OpenClash
 - **平台**：OpenWrt 路由器
 - **内核**：支持 Clash Meta（Mihomo）
 - **特色**：通过 LuCI Web 界面管理，实现路由器级别的全局翻墙
@@ -156,11 +156,11 @@
 
 ### Hiddify
 
-- **GitHub**：hiddify/hiddify-app（⭐ 30.9k）
+- **GitHub**：hiddify/hiddify-app
 - **平台**：Windows / macOS / Linux / Android / iOS
 - **内核**：支持 sing-box、Xray、Clash 等多内核
-- **特色**：自动检测最优协议，内置免费公共配置，界面简洁，对新手友好
-- **适合**：不想折腾配置、希望开箱即用的用户
+- **特色**：支持导入多种配置格式并提供连接测试，界面相对简洁
+- **适合**：需要跨平台配置管理的用户；服务节点仍应由可信来源提供
 
 ## 客户端对比
 
@@ -203,4 +203,6 @@ TUN 模式是许多客户端的重要功能。与传统的系统代理（仅接�
 - **Clash 格式**：YAML 配置文件，包含代理节点、规则、DNS 等完整配置
 - **sing-box 格式**：JSON 配置，sing-box 生态使用
 
-大多数机场（代理服务商）同时提供两种格式的订阅链接，部分客户端支持自动转换。
+服务商提供的格式并不统一；部分客户端或转换工具可在兼容范围内转换，但转换过程可能丢失路由、DNS 或高级选项。
+
+> 项目活跃度、平台兼容性、价格和协议支持会随版本变化。安装前应检查官方仓库、发行签名、最近更新时间和安全公告，不要仅依据下载量或星标数量选型。

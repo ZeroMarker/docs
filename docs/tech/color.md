@@ -269,4 +269,4 @@ body {
 - [Material Design 3 — Color System](https://m3.material.io/styles/color)
 - [WCAG 2.1 — Understanding Contrast](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum)
 - [OKLCH 在 CSS 中的使用](https://oklch.com/)
-- [A Guide To Color Accessibility](https://www.smashingmagazine.com/2024/01/guide-to-accessible-colors/)
+- [W3C：理解最低对比度要求](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html)

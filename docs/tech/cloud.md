@@ -70,7 +70,7 @@
 | RAG 工具 | Bedrock Knowledge Bases | Azure AI Search | Vertex AI Search | 百炼 RAG |
 
 **选型建议**：
-- 需要 GPT-4 级模型 → **Azure OpenAI**（唯一正规渠道）
+- 需要 OpenAI 模型并已采用 Azure 企业治理 → **Azure OpenAI**；直接使用 OpenAI API 也是官方渠道
 - 需要多模型选择 → **Bedrock**（Claude、Llama、Mistral 多家模型）
 - 国内合规 → **阿里云百炼**（通义千问 + 开源模型）
 
@@ -111,7 +111,7 @@
 **省钱技巧**：
 - 生产环境用 **预留/Savings Plan**
 - CI/CD 和批处理用 **Spot/竞价实例**
-- 数据传输费用是最大陷阱 — **同区域内免费，跨区域/跨出口收费**
+- 数据传输费用容易被忽略；同区域、跨可用区、跨区域和公网出口的计费规则因云厂商与服务而异，应以具体服务价格页为准
 
 ---
 
@@ -161,4 +161,4 @@
 - [Azure 官方定价](https://azure.microsoft.com/pricing/)
 - [GCP 官方定价](https://cloud.google.com/pricing)
 - [阿里云定价](https://www.aliyun.com/price)
-- [各平台 Free Tier 对比](https://free tier.dev/)
+- [各平台 Free Tier 对比](https://free-for.dev/)

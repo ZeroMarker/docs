@@ -177,7 +177,7 @@ educom basico 页面说明：只要预付费卡内有余额，服务可以继续
 - Club Sim：[Local Data Service Terms and Conditions](https://www.clubsim.com.hk/en/localdata/tnc)
 - Club Sim：[Data Roaming Day Pass Terms and Conditions](https://www.clubsim.com.hk/en/smartretailzone/tnc)
 - lifecell shop：[Number choice](https://shop.lifecell.ua/en/number-choice/)
-- lifecell eSIM seller terms reference：[lifecell eSIM starter package](https://techboom.com.ua/en/startovyi-paket-lifecell-esim/)
+- lifecell 的有效期和保号规则应以运营商官方客服或当前合同为准；此前引用的第三方销售页已失效
 - Simyo：[Prepaid](https://www.simyo.nl/prepaid)
 - Simyo：[All about call credit and topping up](https://www.simyo.nl/en/klantenservice/beltegoed-en-opwaarderen)
 - educom：[basico](https://www.educom.at/basico)

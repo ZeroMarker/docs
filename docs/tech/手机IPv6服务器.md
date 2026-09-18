@@ -6,32 +6,33 @@ tags: [网络, IPv6, 服务器, 手机, Android]
 
 ## 概要
 
-利用手机的移动网络（4G/5G）天然拥有公网 IPv6 地址的特性，将手机变成一台轻量级服务器，无需内网穿透、无需公网 IPv4，即可对外提供服务。
+在运营商分配全球单播 IPv6 地址、允许入站连接，且 Android 与应用层访问控制均已正确配置时，手机可以临时提供轻量级网络服务。获得 IPv6 地址不代表服务一定能从公网访问；开始前必须实际测试运营商路由、防火墙和端口可达性。
 
 ## 原理
 
-### 为什么手机有公网 IPv6？
+### 为什么手机可能有公网 IPv6？
 
-- 中国三大运营商（移动/联通/电信）在 4G/5G 网络中已全面部署 IPv6
-- 每张 SIM 卡分配的 IPv6 地址通常是**全球单播地址**（2400:/2001: 开头），而非 NAT 后的地址
-- 这意味着手机直接暴露在公网上（仅 IPv6），任何 IPv6 网络均可直接访问
+- 许多 4G/5G 网络会向终端分配全球单播 IPv6 地址，但实际情况取决于运营商、APN、套餐、地区和终端配置。
+- 全球单播地址通常位于 `2000::/3`；地址属于这一范围仍不能证明入站流量未被运营商或系统防火墙过滤。
+- IPv6 通常不依赖 IPv4 式 NAT，但“没有 NAT”不等于“没有防火墙”或“公网一定可达”。
 
 ### 与家庭宽带的对比
 
 | 特性 | 手机移动网络 | 家庭宽带 |
 | :--- | :--- | :--- |
-| IPv4 公网 | 无（运营商 NAT） | 通常无（需申请） |
-| IPv6 公网 | 有（默认分配） | 有（需路由器支持） |
+| IPv4 公网 | 常见 CGNAT，也可能提供公网地址 | 取决于运营商和套餐 |
+| IPv6 全球地址 | 可能分配 | 取决于运营商、光猫和路由器配置 |
 | IP 稳定性 | 较差（基站切换会变） | 较好（重启光猫会变） |
 | 带宽 | 取决于信号（5G 可达数百 Mbps） | 取决于套餐 |
-| 需要内网穿透 | 否 | 是（IPv4） |
+| 入站可达性 | 必须实测，可能被过滤 | 必须实测并检查路由器防火墙 |
 
 ## 前置条件
 
-1. **SIM 卡**：开通了 IPv6 的手机卡（目前三大运营商默认已支持）
+1. **SIM 卡和 APN**：确认当前网络确实分配 IPv6；不要假设所有卡、漫游网络或 APN 都支持
 2. **手机系统**：Android 推荐（可 root 更佳），iOS 因系统限制功能有限
-3. **确认 IPv6 可用**：浏览器访问 [ipv6.test-ipv6.com](https://ipv6.test-ipv6.com/) 确认获得公网 IPv6 地址
-4. **目标访问端**：访问方也需要 IPv6 网络（家庭宽带 + 光猫开启 IPv6，或手机流量）
+3. **确认 IPv6 可用**：通过 [test-ipv6.com](https://test-ipv6.com/) 和 `ip -6 addr show` 确认地址与出站连接
+4. **验证入站**：启动临时测试服务后，从另一条 IPv6 网络测试指定端口；同一 Wi-Fi 内测试不能证明公网可达
+5. **目标访问端**：访问方也必须具备可用的 IPv6 路由
 
 ## 方案一：Termux + SSH（最基础）
 
@@ -45,8 +46,11 @@ tags: [网络, IPv6, 服务器, 手机, Android]
 # 安装 openssh
 pkg update && pkg install openssh
 
-# 设置密码
-passwd
+# 创建密钥目录；把客户端公钥写入 authorized_keys
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+nano ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
 
 # 启动 sshd（默认监听 8022 端口）
 sshd
@@ -66,10 +70,10 @@ ip -6 addr show
 ### 从外部连接
 
 ```bash
-ssh -p 8022 user@[2408:xxxx:xxxx::xxxx]
+ssh -p 8022 user@2408:xxxx:xxxx::xxxx
 ```
 
-> **注意**：方括号是 IPv6 地址的必需格式。
+> OpenSSH 的 `ssh` 命令直接使用 IPv6 地址，不加方括号。方括号用于 URL、`host:port` 等需要区分地址与端口的语法。首次确认密钥登录成功后，应在 `$PREFIX/etc/ssh/sshd_config` 中设置 `PasswordAuthentication no` 并重启 `sshd`。
 
 ## 方案二：Termux + Web 服务器
 
@@ -96,9 +100,11 @@ nginx
 
 ### Python HTTP Server
 
+Python 内置服务器只适合短时调试，不提供生产级认证、TLS 或抗攻击能力。优先绑定到本机 `::1`；只有在确认内容无敏感信息并设置额外访问控制后，才监听所有接口。
+
 ```bash
 # Python 内置，零依赖
-python3 -m http.server 8080 --bind ::
+python3 -m http.server 8080 --bind ::1
 ```
 
 ### Node.js
@@ -115,8 +121,8 @@ const server = http.createServer((req, res) => {
   res.writeHead(200, {'Content-Type': 'text/html'});
   res.end('<h1>Hello from phone!</h1>');
 });
-server.listen(8080, '::', () => {
-  console.log('Server running on [::]:8080');
+server.listen(8080, '::1', () => {
+  console.log('Server running on [::1]:8080');
 });
 ```
 
@@ -140,7 +146,7 @@ mysqld_safe &
 # 在手机上创建 bare repo
 mkdir ~/git/myrepo.git && cd ~/git/myrepo.git
 git init --bare
-# 外部通过 git clone ssh://[2408:xxxx::xxxx]:8022/~/git/myrepo.git 克隆
+# 建议先在 ~/.ssh/config 中为地址、用户和 8022 端口设置主机别名，再使用别名克隆
 ```
 
 ## 稳定性与注意事项
@@ -159,9 +165,10 @@ git init --bare
 
 ### 防火墙
 
-- Android 系统本身没有入站防火墙（非 root 情况下），Termux 的服务默认可被外部访问
-- 部分运营商可能对入站流量做了过滤（尤其是常用端口如 80/443），建议使用**高位端口**（如 8080、8443）
-- 如需精细控制，root 后可使用 `iptables` / `ip6tables`
+- Android 网络栈包含 `iptables`、`ip6tables`、`netd` 等防火墙和网络配置机制；设备厂商和运营商也可能过滤入站流量。
+- Termux 进程是否能被外部访问必须逐设备、逐网络测试，不能由监听地址单独判断。
+- 高位端口可能避开部分端口策略，但不构成安全措施；不需要的服务应停止监听。
+- 如需长期远程访问，优先考虑带身份认证和访问控制的组网方案，而不是直接暴露开发服务器。
 
 ### 电量与性能
 
@@ -174,9 +181,9 @@ git init --bare
 
 ### 安全建议
 
-- **必须设置强密码**或使用 SSH 密钥认证
+- **优先使用 SSH 密钥并关闭密码登录**
 - 不要暴露不必要的端口
-- 考虑使用 `fail2ban` 防暴力破解（需 proot 完整 Linux 环境）
+- 不要依赖 `fail2ban` 替代密钥认证、最小暴露和网络访问控制
 - 定期检查开放端口：`ss -tlnp`
 
 ## 进阶：proot 完整 Linux 环境
@@ -188,23 +195,24 @@ pkg install proot-distro
 proot-distro install debian
 proot-distro login debian
 
-# 在 Debian 环境中可以安装完整的 nginx、docker（部分）、systemd 服务等
+# PRoot 可提供用户态 Debian 工具，但不等同于完整虚拟机
 apt update && apt install nginx
 ```
+
+PRoot 没有真正的 root 权限，也不能正常提供 Docker 所需的内核 namespace、cgroup 和守护进程环境；`systemd` 等系统级服务同样受限。
 
 ## 典型使用场景
 
 | 场景 | 说明 |
 | :--- | :--- |
-| 临时 Web 演示 | 在手机上跑一个 Web 服务，发链接给别人直接访问 |
+| 临时 Web 演示 | 仅在加认证或受控网络内提供短时演示 |
 | 远程开发 | SSH 连接手机，用 vim/emacs 写代码 |
 | 文件传输 | `scp` 直接传文件，无需微信/QQ 中转 |
 | Git 仓库 | 手机作为 Git remote，离线也能 push/pull |
-| IoT 网关 | 手机作为中间层，连接本地设备并对外暴露 API |
-| 翻墙出口 | 手机作为代理服务器，利用运营商 IPv6 出口 |
+| IoT 网关 | 手机作为中间层；API 需要认证、TLS 和最小权限控制 |
 
 ## 参考资料
 
 - [Termux 官方文档](https://wiki.termux.com/wiki/Main_Page)
-- [中国运营商 IPv6 部署现状](https://www.ipv6.org.cn/)
-- [Android IPv6 配置](https://developer.android.com/develop/connectivity/ipv6)
+- [Android 开源项目：网络栈配置工具](https://source.android.com/docs/core/architecture/hidl/network-stack)
+- [Termux OpenSSH 包说明](https://github.com/termux/termux-packages/tree/master/packages/openssh)
