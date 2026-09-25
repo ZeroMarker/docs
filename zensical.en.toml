@@ -1,16 +1,18 @@
 [project]
-site_name = "个人笔记"
-site_url = "https://zeromarker.github.io/docs/"
-site_description = "各类学习笔记与记录。"
+site_name = "Personal Notes"
+site_url = "https://zeromarker.github.io/docs/en/"
+site_description = "Learning notes and references."
 site_author = "notes"
 repo_url = "https://github.com/ZeroMarker/docs"
 repo_name = "ZeroMarker/docs"
-edit_uri = "edit/main/docs/"
+edit_uri = "edit/main/docs-en/"
+docs_dir = "docs-en"
+site_dir = "site/en"
 use_directory_urls = true
 
 [project.theme]
 variant = "classic"
-language = "zh"
+language = "en"
 features = [
   "navigation.instant",
   "navigation.path",
@@ -22,19 +24,19 @@ features = [
 [[project.theme.palette]]
 media = "(prefers-color-scheme)"
 toggle.icon = "lucide/sun-moon"
-toggle.name = "切换到浅色模式"
+toggle.name = "Switch to light mode"
 
 [[project.theme.palette]]
 media = "(prefers-color-scheme: light)"
 scheme = "default"
 toggle.icon = "lucide/sun"
-toggle.name = "切换到深色模式"
+toggle.name = "Switch to dark mode"
 
 [[project.theme.palette]]
 media = "(prefers-color-scheme: dark)"
 scheme = "slate"
 toggle.icon = "lucide/moon"
-toggle.name = "跟随系统设置"
+toggle.name = "Follow system preference"
 
 [project.plugins.tags]
 
