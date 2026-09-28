@@ -20,3 +20,4 @@
 - [政治](politics/)
 - [SIM 卡](sim/)
 - [技术](tech/)
+- [课程笔记](course/)
