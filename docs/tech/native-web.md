@@ -157,6 +157,150 @@ HTMX 与 Alpine 可以结合：前者处理请求和 HTML 替换，后者处理�
 
 截至本文核对日期，TC39 Signals 仓库仍将其标记为提案，不能将它当作已普遍可用的浏览器内置 API。生产项目使用的 Signals 通常来自具体库或实现，应核对其接口与运行时依赖。[Signals 提案](https://github.com/tc39/proposal-signals)
 
+## 不使用 node_modules 的开发方式
+
+`node_modules` 是常见 npm 工作流中的本地依赖目录，不是浏览器运行 Web 应用的必要条件。需要区分项目目录、开发机器和部署环境：项目内没有该目录，不等于开发机器没有下载工具，也不等于浏览器没有加载第三方代码。
+
+### 方式一：纯本地文件与浏览器 API
+
+一个不需要 npm、`package.json` 或打包步骤的项目可以这样组织：
+
+```text
+my-app/
+├── index.html
+├── css/style.css
+├── js/
+│   ├── app.js
+│   └── components/button.js
+└── assets/
+```
+
+`index.html`：
+
+```html
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>原生组件示例</title>
+    <link rel="stylesheet" href="./css/style.css">
+  </head>
+  <body>
+    <main id="app"></main>
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>
+```
+
+`js/components/button.js`：
+
+```js
+class MyButton extends HTMLElement {
+  constructor() {
+    super();
+    const root = this.attachShadow({ mode: "open" });
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = "点击";
+    root.append(button);
+  }
+}
+
+customElements.define("my-button", MyButton);
+```
+
+`js/app.js`：
+
+```js
+import "./components/button.js";
+
+document.querySelector("#app").append(document.createElement("my-button"));
+```
+
+`css/style.css`：
+
+```css
+body {
+  margin: 2rem;
+  font-family: system-ui, sans-serif;
+}
+```
+
+在 `my-app/` 中启动本地开发服务器，然后打开 `http://localhost:8000/`：
+
+```bash
+python3 -m http.server 8000 --bind 127.0.0.1
+```
+
+这条命令使用 Python，不涉及 npm。它用于本地静态文件开发；上线时使用适合部署环境的静态服务。[Python HTTP server](https://docs.python.org/3/library/http.server.html)
+
+`npx serve` 也可以提供开发服务，但它使用 npm 工具链。缺失的包可以下载到 npm 缓存并从那里执行，所以项目内没有 `node_modules` 不代表工具没有安装或下载依赖。[npm exec / npx 的执行机制](https://docs.npmjs.com/cli/v11/commands/npm-exec/)
+
+### 方式二：通过 CDN 加载 ESM 依赖
+
+需要 Lit 等库时，可以让浏览器从 CDN 加载面向浏览器的 ES Module。例如以下完整片段可放在一个由 HTTP 服务提供的 HTML 页面中：
+
+```html
+<script type="importmap">
+{
+  "imports": {
+    "lit": "https://cdn.jsdelivr.net/npm/lit@3.3.1/+esm"
+  }
+}
+</script>
+
+<script type="module">
+  import { LitElement, html } from "lit";
+
+  class HelloCard extends LitElement {
+    render() {
+      return html`<p>Hello from Lit</p>`;
+    }
+  }
+
+  customElements.define("hello-card", HelloCard);
+</script>
+
+<hello-card></hello-card>
+```
+
+此处 `3.3.1` 是固定版本示例，不表示最新版本。jsDelivr 的 `+esm` 服务处理包，使其可按 ESM 方式加载；第三方代码仍会被浏览器下载并运行，只是没有在项目内执行 `npm install`。[jsDelivr ESM 服务](https://www.jsdelivr.com/esm)
+
+Import Maps 将模块名映射到 URL，不承担 npm 的版本求解、锁文件、包安装或 TypeScript 类型检查。映射应先于使用它的模块加载；`lit` 的映射也不会自动覆盖 `lit/decorators.js` 等子路径，使用额外入口时需配置相应映射。[Import Maps 文档](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script/type/importmap)
+
+采用这条路线时，应记录所用版本和模块来源，确认依赖链可在浏览器解析，以及目标网络和部署策略允许加载这些资源。没有本地依赖目录并不会消除版本管理工作。
+
+### 方式三：加载组件库的浏览器发行包
+
+Web Components UI 库也可以提供 CDN 或可自托管的浏览器发行包。Web Awesome 官方支持这类方式，并区分供打包器使用的 `dist` 与可直接加载的 `dist-cdn`；页面还需要按其文档加载主题和相关资源。[Web Awesome 安装指南](https://webawesome.com/docs/)
+
+可以从官方安装页取得固定版本的主题与加载器，然后使用 `<wa-button>` 等标签。使用自托管文件时，要保留必要的模块、样式和资源路径；仅复制一个 npm 入口文件不一定足够。
+
+这种做法属于“使用第三方库但不在项目中安装 npm 依赖”。它与手写零第三方依赖的组件不同，组件 API 与升级维护仍由所选库决定。
+
+### Buildless 与工程工具可以共存
+
+Open WC 的 buildless 路线通常由开发服务器直接提供模块；服务器本身也可能通过 npm 安装。因此，buildless 描述的是开发时是否需要打包，不能推导出没有 `node_modules`。[Open WC 指南](https://open-wc.org/guides/developing-components/going-buildless/)
+
+采用 TypeScript、Tailwind、PostCSS、Sass 或 Vite 时，常见工作流会安装本地开发工具与依赖。它们是否需要某个具体目录取决于工具与安装方式；浏览器最终加载的是处理后的文件，而不是开发目录。
+
+例如 Vite 静态项目通常将构建产物输出到 `dist/`，可以只部署该目录，不必把开发用 `node_modules` 上传到静态站点服务器。若部署的是服务端应用，则应另行核对服务器需要的运行时依赖。[Vite 静态部署](https://vite.dev/guide/static-deploy.html)
+
+### 按依赖管理方式比较
+
+| 方式 | 项目内的 node_modules | 第三方浏览器代码 | 主要维护工作 |
+|------|------------------------|------------------|--------------|
+| 原生 JavaScript + 相对模块路径 | 不需要 | 可以没有 | 应用结构、组件行为与浏览器兼容 |
+| CDN ESM + Import Maps | 不需要 | 有 | URL、版本、模块解析与网络加载 |
+| 自托管浏览器发行包 | 不需要 | 有 | 文件版本、资源路径与升级 |
+| npm 工具链 + buildless 开发 | 常见安装方式下有 | 视所用库而定 | 开发工具、依赖与模块提供方式 |
+| Vite / TypeScript 等构建方案 | 常见安装方式下有 | 视所用库而定 | 锁文件、构建与依赖升级 |
+
+React 与 Web Components 并不能分别等同于“必须有”和“没有” `node_modules`：是否存在该目录由依赖获取与工具链决定。依赖数量、磁盘占用和浏览器下载体积也各不相同，不能用“Web Components 几十 MB、React GB 级”作为固定比较。
+
+如果目标是完全避免 npm 与 Node 工具链，可以从本地 JavaScript 模块开始，按需采用 CDN 或自托管的浏览器包。如果目标主要是减少部署体积，则应先区分开发依赖与发布文件，再测量实际产物。
+
 ## 原生能力与应用架构的边界
 
 ### 原生导航 API 不是完整应用路由
