@@ -4,6 +4,8 @@ Lit 是起源于 Google Web Components 技术工作的轻量级开源 UI 库，�
 
 本文核对日期：2026-10-14。相关比较见 [前端框架对比](frontend.md)，设计体系与 shadcn/ui 介绍见 [现代设计语言与设计体系](design-systems.md)。
 
+Vanilla JavaScript、服务端 HTML 增强与轻量响应式库的整体比较，见 [Web 原生开发路线与选型](native-web.md)。
+
 ## 定位：标准组件与开发体验
 
 Web Components 是一组浏览器能力，主要包括 Custom Elements、Shadow DOM，以及模板与插槽相关机制。Lit 在这些能力之上提供开发便利，不会把它们替换成专属的浏览器标准。
