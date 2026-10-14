@@ -124,6 +124,108 @@ Chakra UI 提供可定制的组件体系；shadcn/ui 强调把组件源码纳入
 
 无样式组件提高视觉自由度，也意味着团队要自行建立颜色、间距、字体、状态和组件规范。组件提供无障碍基础，最终体验仍需结合内容、组合方式和真实交互验证。
 
+### shadcn/ui 详细介绍
+
+#### 定位与工作方式
+
+shadcn/ui 提供具有默认样式的组件，以及将代码分发到项目的工具。其核心是让团队掌控组件的上层源码：添加组件后，可以直接修改结构、样式和接口，并逐步形成自己的组件体系。[官方介绍](https://ui.shadcn.com/docs)
+
+典型流程如下：
+
+```text
+选择组件与预设 → CLI 写入组件源码并安装依赖
+→ 应用从本地文件导入 → 按产品需求修改 → 团队维护
+```
+
+例如，页面通常从 `@/components/ui/button` 导入按钮。这个文件属于项目，可以进入版本控制；底层交互库、图标等仍可作为 npm 依赖安装。因此，“源码可控”指的是可以定制的组件层，并不意味着全部依赖都复制进仓库。[Button 文档](https://ui.shadcn.com/docs/components/button)
+
+#### 与 React、Tailwind 和组件原语的关系
+
+| 层次 | 负责的内容 | 示例 |
+|------|------------|------|
+| React | 组件组织、状态与界面渲染 | 页面与业务组件 |
+| 组件原语 | 焦点管理、键盘操作、弹层等交互基础 | Base UI、Radix UI、React Aria |
+| Tailwind CSS | 样式类与主题令牌映射 | 间距、布局、颜色与状态样式 |
+| shadcn/ui 组件 | 可修改的结构、默认样式与组合接口 | Button、Dialog、Select、Card |
+| 产品业务层 | 数据、权限、任务流程与业务反馈 | 订单筛选、Agent 任务面板 |
+
+早期常见组合是 Radix UI + Tailwind CSS；当前官方 CLI 已支持选择 Base UI、Radix UI 和 React Aria 等基础方案，不能将 shadcn/ui 固定理解为 Radix 的样式包装。不同方案的组件接口与组合方式可能不同，应以项目实际生成的代码为准。[CLI 文档](https://ui.shadcn.com/docs/cli)、[组件实现选项](https://ui.shadcn.com/docs/components/button)
+
+官方提供 Next.js、Vite、React Router、Astro 等安装路径。这里介绍的是 React 组件体系；某个框架有安装指南，不代表其所有渲染模式都能直接使用交互组件。在 React Server Components 项目中，仍需处理客户端组件边界。[安装文档](https://ui.shadcn.com/docs/installation)、[项目配置](https://ui.shadcn.com/docs/components-json)
+
+#### 视觉风格与主题定制
+
+默认界面通常呈现简洁的表面、明确的边框、圆角和清晰的文字层级，适合作为 SaaS 的起点；这些是可修改的默认选择，不是产品必须遵守的品牌语言。
+
+官方推荐通过 CSS 变量定义语义令牌，再由 Tailwind 映射为样式类。例如 `primary` 与 `primary-foreground` 分别表达主操作表面及其上的文字颜色；组件使用 `bg-primary`、`text-primary-foreground` 等类。深色主题覆盖同一套令牌，无需逐个重写控件。[主题文档](https://ui.shadcn.com/docs/theming)
+
+| 定制层次 | 调整内容 | 实际用途 |
+|----------|----------|----------|
+| 主题令牌 | 品牌色、背景、文字、边框、焦点环与圆角 | 统一改变产品视觉 |
+| 组件变体 | 按钮强调程度、尺寸和不同状态 | 建立稳定的控件规范 |
+| 组件结构 | 子元素、布局、组合方式与交互接口 | 适配更具体的任务 |
+| 页面模式 | 导航、表单流程、空状态与错误恢复 | 形成产品自己的体验 |
+
+团队实践上，公共颜色与尺寸应优先放入令牌或统一变体。若每个页面都通过零散的 `className` 覆盖同一组件，后续统一调整会更加困难。
+
+#### 入门示例
+
+在已经完成对应框架、Tailwind 和导入别名配置的项目中，可以初始化并添加组件：
+
+```bash
+npx shadcn@latest init
+npx shadcn@latest add button card
+```
+
+`init` 配置项目基础，`add` 按配置写入所选组件并处理依赖。`components.json` 记录样式、CSS 路径和导入别名等信息，供 CLI 使用；手动复制组件时不一定需要它。新项目也可以通过官方可视化入口选择预设并生成安装命令。[CLI 文档](https://ui.shadcn.com/docs/cli)、[配置说明](https://ui.shadcn.com/docs/components-json)、[安装入口](https://ui.shadcn.com/docs/installation)
+
+下面展示本地按钮组件的使用方式，假设 `@/` 已映射到正确目录：
+
+```tsx
+import { Button } from "@/components/ui/button"
+
+export function TaskActions() {
+  return (
+    <div className="flex gap-2">
+      <Button type="button">创建任务</Button>
+      <Button type="button" variant="outline">查看历史</Button>
+    </div>
+  )
+}
+```
+
+示例只展示控件与样式，业务事件由应用接入。安装命令中的 `@latest` 会随发布变化；正式项目应记录所用 CLI、依赖版本和预设，便于团队复现。[Button 用法](https://ui.shadcn.com/docs/components/button)
+
+#### 组件、组合示例与 Registry
+
+按钮、输入框和卡片是基础积木；弹窗、菜单和选择器还依赖交互原语。复杂界面通常需要继续组合：例如官方 Data Table 指南通过 Table 与 TanStack Table 构建排序、筛选、分页和选择能力，而不是一个已包办所有业务需求的数据表格组件。[Data Table 指南](https://ui.shadcn.com/docs/components/data-table)
+
+Registry 是代码分发机制，可以发布自定义组件、Hooks、页面、配置及其他文件。团队可以借此向多个项目分发统一的业务组件；Registry 机制本身也不限于 React。[Registry 文档](https://ui.shadcn.com/docs/registry)
+
+这使 shadcn/ui 可以作为内部设计系统的起点，但组件说明、版本管理、变更记录和跨项目升级策略仍需要团队建设。
+
+#### 优势与维护成本
+
+以下取舍是基于源码分发与本地定制方式的工程判断：
+
+| 维度 | 带来的价值 | 团队承担的工作 |
+|------|------------|----------------|
+| 定制 | 可以直接修改组件源码 | 维护修改后的行为与接口 |
+| 组合 | 可逐步抽取业务组件 | 统一组合规则与状态表达 |
+| 升级 | 可以选择性吸收上游变化 | 对比本地修改、合并修复并验证 |
+| 无障碍 | 交互原语提供基础能力 | 验证标签、对比度、焦点和键盘流程 |
+| 多项目复用 | Registry 可分发公共代码 | 管理版本、兼容性与项目间差异 |
+
+已经复制并修改的组件不会仅因更新 CLI 或底层依赖就自动获得全部上游改动。建议把通用组件与业务组件分层，记录定制原因，并在接入上游修复时检查受影响的交互。
+
+#### 适用场景与 AI 产品
+
+如果团队使用 React，需要品牌定制，并愿意维护组件源码，shadcn/ui 可以作为 SaaS、管理工具和 AI 工作区的起点。若项目更看重完整的企业组件覆盖与统一升级，可以同时评估 Ant Design 或其他组件体系，而不是只比较默认外观。
+
+源码开放、组合接口和现成组件便于 AI 辅助工具读取并修改界面，这是官方强调的设计方向；它并不能直接证明某种市场占有率或流行度排名。[官方设计原则](https://ui.shadcn.com/docs)
+
+对 AI 产品而言，组件可以承载消息、任务状态、工具结果和编辑区。产品仍需设计取消与重试、长任务进度、结果检查和失败恢复；使用 shadcn/ui 不会自动补齐这些工作流。
+
 ## 游戏、汽车与硬件界面
 
 以下例子主要是具体产品的界面与交互实践，公开资料的完整程度与可复用组件覆盖不同于 Carbon、Ant Design 等设计系统。表中的风格与借鉴方向是对产品体验的归纳。
