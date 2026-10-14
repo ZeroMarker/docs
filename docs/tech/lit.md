@@ -200,6 +200,8 @@ Vite、TypeScript、Storybook 和 Playwright 可以分别承担开发构建、�
 
 ## 相关生态
 
+各组件库的定位、维护状态与选型比较，见 [Web Components 组件库分类与选型](web-components-libraries.md)。
+
 | 项目 | 定位与关系 | 参考资料 |
 |------|------------|----------|
 | Shoelace / Web Awesome | Web Components UI 组件生态；Web Awesome 延续 Shoelace 的项目方向，可作为现成控件与设计实践参考 | [Web Awesome](https://webawesome.com/)、[安装文档](https://webawesome.com/docs/) |

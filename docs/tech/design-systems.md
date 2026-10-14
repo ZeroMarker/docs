@@ -228,6 +228,8 @@ Registry 是代码分发机制，可以发布自定义组件、Hooks、页面、
 
 如果希望构建跨框架的标准组件体系，可以参考 [Lit 框架简介与跨框架组件设计](lit.md)，其中讨论了用 Web Components 实现组件时的 API、主题与适配成本。
 
+现成组件与自建基础的选择，见 [Web Components 组件库分类与选型](web-components-libraries.md)，涵盖 Web Awesome、Fluent、Carbon、Lion、Vaadin 与 Spectrum。
+
 ## 游戏、汽车与硬件界面
 
 以下例子主要是具体产品的界面与交互实践，公开资料的完整程度与可复用组件覆盖不同于 Carbon、Ant Design 等设计系统。表中的风格与借鉴方向是对产品体验的归纳。
