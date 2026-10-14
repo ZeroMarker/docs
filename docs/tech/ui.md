@@ -1,5 +1,7 @@
 # 谷歌、微软、苹果的设计语言
 
+Carbon、Spectrum、Ant Design 等体系及 Web 组件工具的分类与选型，见 [现代设计语言与设计体系](design-systems.md)。
+
 ## Google — Material Design
 
 ### 起源与演进
