@@ -16,16 +16,65 @@
 
 ## 常见封装格式
 
+### 通用文件与网页视频
+
 | 格式 | 常见扩展名 | 特点 | 常见用途 |
 | --- | --- | --- | --- |
 | MP4 | `.mp4` | 兼容范围广，可封装不同音视频编码 | 日常拍摄、分享、网页播放 |
 | MOV | `.mov` | QuickTime 容器，常见于苹果设备和剪辑流程 | 素材录制、视频剪辑、素材交换 |
 | MKV | `.mkv` | 支持多条音轨、字幕、章节和附件 | 多语言视频、本地视频收藏 |
 | WebM | `.webm` | 面向网页，常搭配 VP8、VP9 或 AV1 视频编码 | 网页视频、在线内容 |
+| Ogg Video | `.ogv`、`.ogg` | Ogg 容器中的视频，常搭配 Theora 编码；Ogg 也可只包含音频 | 开放媒体内容、历史网页视频 |
+| M4V | `.m4v` | 常见于苹果生态的 MPEG-4 视频文件扩展名，部分文件可能带版权保护 | 视频下载、媒体库内容 |
+
+M4V 不能仅凭扩展名判断是否加密，也不能通过改名解除版权保护。通用容器与编码组合可参考 [MDN：媒体封装格式](https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Containers)。
+
+### 旧设备与历史网络视频
+
+| 格式 | 常见扩展名 | 特点 | 常见用途 |
+| --- | --- | --- | --- |
 | AVI | `.avi` | 较早的容器，现代网页原生播放支持有限 | 旧设备、旧软件和历史素材 |
+| ASF / WMV | `.asf`、`.wmv` | ASF 是容器；以 `.wmv` 命名的视频通常使用 ASF 封装、WMV 视频编码 | Windows 旧视频、历史流媒体 |
+| FLV | `.flv` | Flash Video 容器，也见于部分直播传输和录制流程 | 历史网页视频、直播录制 |
+| F4V | `.f4v` | 基于 ISO 基础媒体文件格式，与 FLV 的内部结构不同 | Flash 生态中的 H.264 视频 |
+| RealMedia / RMVB | `.rm`、`.rmvb` | RealNetworks 媒体容器系列；RMVB 表示可变码率扩展 | 历史网络视频、旧影视文件 |
+| 3GP / 3G2 | `.3gp`、`.3g2` | 为移动通信场景设计的容器系列 | 功能手机录像、早期移动视频 |
+
+WMV 同时是编码家族名称，不能把 WMV 编码与 ASF 容器视为同一概念。ASF 与 RealMedia 的历史格式说明可参考美国国会图书馆的 [ASF 条目](https://www.loc.gov/preservation/digital/formats/fdd/fdd000067.shtml)和 [RealVideo 条目](https://www.loc.gov/preservation/digital/formats/fdd/fdd000050.shtml)；FLV 与 F4V 的结构区别见 [Adobe 格式规范](https://rtmp.veriskope.com/pdf/video_file_format_spec_v10_1.pdf)。
+
+### 广播、光盘与摄像机素材
+
+| 格式 | 常见扩展名 | 特点 | 常见用途 |
+| --- | --- | --- | --- |
 | MPEG-TS | `.ts` | 面向传输，可复用多路媒体流 | 广播电视、流媒体分片、电视录制 |
+| MPEG-PS | `.mpg`、`.mpeg`、`.vob` | 面向存储的节目流封装，可复用音视频 | 旧视频文件、DVD 相关素材 |
+| DVD VOB | `.vob` | 基于 MPEG-PS，包含 DVD 视频、音频及子画面等数据 | DVD-Video 光盘内容 |
+| M2TS / MTS | `.m2ts`、`.mts` | MPEG-TS 的相关封装变体，常采用带额外时间信息的 192 字节包 | 蓝光光盘、AVCHD 摄像机素材 |
+
+`.mpg`、`.mpeg` 也可能用于其他 MPEG 流，不能只靠扩展名判断内部封装。VOB 文件通常只是 DVD 内容的一部分；菜单、章节和播放顺序还依赖其他文件。AVCHD 等摄像机素材也宜保留完整目录结构。相关流格式与 DVD 文件结构见 [FFmpeg 格式文档](https://ffmpeg.org/ffmpeg-formats.html)。
+
+### 专业制作与交换
+
+| 格式 | 常见扩展名 | 特点 | 常见用途 |
+| --- | --- | --- | --- |
+| MXF | `.mxf` | 可封装媒体数据与丰富的制作元数据，具体轨道组织取决于操作模式 | 广播电视、专业摄像机、节目交付 |
+| DV 流文件 | `.dv`、`.dif` | 常见为 DV 编码的音视频交织数据流；DV 也可装入 MOV、AVI 等容器 | 数字磁带采集、旧摄像机素材 |
+
+MXF 是容器，不保证采用某一种编码，也不等于无损或 RAW；不同设备和软件可能只支持其中部分组合。参见 [MXF 格式说明](https://www.loc.gov/preservation/digital/formats/fdd/fdd000013.shtml)。
 
 格式名称不代表固定画质或文件大小。例如，MOV 可以保存高码率剪辑素材，也可以保存压缩视频；MKV 也不等于无损视频。封装能力可参考 [MDN 文档](https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Containers)和 [Matroska 官方介绍](https://www.matroska.org/what_is_matroska.html)。
+
+## 流媒体中常见的格式与文件
+
+在线视频可能由播放清单、初始化文件和多个媒体分片组成，而不是一个完整视频文件。
+
+| 名称 | 常见扩展名或形式 | 实际作用 |
+| --- | --- | --- |
+| HLS 播放清单 | `.m3u8` | 文本清单，描述分片地址、时长或可选码率；本身不包含视频画面 |
+| MPEG-DASH 清单 | `.mpd` | XML 格式的媒体呈现描述，组织不同码率、音视频轨道及分片 |
+| 分片 MP4（fMP4） | `.mp4`、`.m4s` 等 | MP4 的分片组织方式；媒体分片可能需要配合初始化段才能解码 |
+
+HLS 可以使用 MPEG-TS 或 fMP4 等媒体分片；DASH 也常使用分片 MP4。保存一个 M3U8 或 MPD 文件通常不等于保存完整视频。扩展名还可能由服务端自定义，识别文件时应检查内容与响应类型。参见 [Apple：HLS](https://developer.apple.com/streaming/)和 [FFmpeg：HLS、DASH 与 MP4 分片](https://ffmpeg.org/ffmpeg-formats.html)。
 
 ## 常见视频编码
 
@@ -37,6 +86,8 @@
 | AV1 | 注重压缩效率，用于网络视频分发 | 编码耗时、硬件解码支持 |
 
 压缩效率还取决于画面内容、编码器实现和参数，不能仅凭编码名称预测最终效果。浏览器和操作系统支持会变化，具体交付前可核对 [MDN：视频编码指南](https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Video_codecs)，并在目标设备上试播。
+
+专业制作中还会遇到 ProRes、DNxHD / DNxHR 等编码家族，它们不属于与 MP4、MOV 并列的容器名称。例如，MOV 文件可以承载 ProRes 视频；说明素材格式时，最好同时写出容器与编码。ProRes 的编码家族及特点见 [Apple：关于 Apple ProRes](https://support.apple.com/en-us/102207)。
 
 ## 什么决定画质和文件大小
 
