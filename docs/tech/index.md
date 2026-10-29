@@ -16,3 +16,18 @@
 - [谷歌、微软、苹果的设计语言](ui.md)
 - [现代设计语言与设计体系](design-systems.md)
 - [Web Components 组件库分类与选型](web-components-libraries.md)
+
+## 命令与工具速查
+
+以下目录于 2026-10-29 从独立仓库迁入，原仓库已归档，提交历史仍可在原仓库查看。
+
+- [Unix / Linux 命令](unix/README.md)（原 [ZeroMarker/unix](https://github.com/ZeroMarker/unix)）
+- [PowerShell](powershell/README.md)（原 [ZeroMarker/PowerShell](https://github.com/ZeroMarker/PowerShell)）
+- [Git 与版本控制](git/README.md)（原 [ZeroMarker/git](https://github.com/ZeroMarker/git)）
+- [构建命令与项目模板](make/README.md)（原 [ZeroMarker/make](https://github.com/ZeroMarker/make)）
+- [包管理器](package/README.md)（原 [ZeroMarker/package](https://github.com/ZeroMarker/package)）
+
+## 编程范式示例
+
+- [多线程编程](thread/README.md)（原 [ZeroMarker/thread](https://github.com/ZeroMarker/thread)）
+- [函数式编程](function/README.md)（原 [ZeroMarker/function](https://github.com/ZeroMarker/function)）

@@ -1,0 +1,2 @@
+run:
+	scheme main.scm

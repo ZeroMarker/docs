@@ -1,0 +1,612 @@
+- language: Python
+  build_tools:
+    - name: setuptools
+      recommended: true
+      description: Standard Python build tool
+    - name: flit
+      recommended: false
+      description: Simple Python packaging tool
+    - name: poetry
+      recommended: true
+      description: Modern Python packaging and dependency management
+  package_managers:
+    - name: pip
+      recommended: true
+      description: Standard Python package installer
+    - name: pipenv
+      recommended: false
+      description: Python packaging tool with virtualenv integration
+    - name: poetry
+      recommended: true
+      description: Python packaging and dependency manager
+    - name: uv
+      recommended: true
+      description: Fast Python package installer written in Rust
+  project_managers:
+    - name: poetry
+      recommended: true
+      description: Python project management with dependency resolution
+    - name: pdm
+      recommended: true
+      description: Modern Python package manager with PEP 582 support
+    - name: hatch
+      recommended: false
+      description: Python project management and packaging tool
+  compilation_tools:
+    - name: CPython (interpreter)
+      recommended: true
+      description: Standard Python implementation
+    - name: Cython
+      recommended: true
+      description: Optimizing static compiler for Python and Cython
+    - name: Nuitka
+      recommended: false
+      description: Python compiler to native code
+  package_registries:
+    - name: PyPI
+      recommended: true
+      description: Python Package Index - official repository
+    - name: TestPyPI
+      recommended: true
+      description: Test instance of PyPI for package testing
+  install_windows:
+    - name: python.org installer
+      recommended: true
+      description: Official Python installer from python.org
+    - name: Microsoft Store
+      recommended: false
+      description: Python from Microsoft Store (maintained by Microsoft)
+    - name: winget
+      recommended: true
+      description: Windows package manager command-line tool
+    - name: Chocolatey
+      recommended: true
+      description: Windows package manager
+  install_unix:
+    - name: apt (Ubuntu/Debian)
+      recommended: true
+      description: Package manager for Debian-based distributions
+    - name: dnf (Fedora)
+      recommended: true
+      description: Package manager for Fedora/RHEL-based distributions
+    - name: pacman (Arch)
+      recommended: true
+      description: Package manager for Arch Linux
+    - name: Homebrew (macOS)
+      recommended: true
+      description: Package manager for macOS
+    - name: conda
+      recommended: false
+      description: Cross-platform package and environment manager
+
+- language: JavaScript / Node.js
+  build_tools:
+    - npm
+    - yarn
+    - pnpm
+    - webpack
+    - esbuild
+  package_managers:
+    - npm
+    - yarn
+    - pnpm
+    - bun
+  project_managers:
+    - npm init
+    - yarn create
+    - pnpm create
+    - create-react-app
+    - Vite
+  compilation_tools:
+    - Node.js (runtime)
+    - TypeScript (tsc)
+    - Babel
+  package_registries:
+    - npm registry
+    - GitHub Packages
+    - Yarn registry (same as npm)
+  install_windows:
+    - nodejs.org installer
+    - winget
+    - Chocolatey
+    - nvm-windows
+  install_unix:
+    - apt (via NodeSource)
+    - pacman
+    - Homebrew (macOS)
+    - nvm (Node Version Manager)
+
+- language: Java
+  build_tools:
+    - Maven
+    - Gradle
+    - Ant
+    - Bazel
+  package_managers:
+    - Maven (mvn)
+    - Gradle (gradle)
+  project_managers:
+    - Maven Archetype
+    - Gradle Init
+    - Spring Initializr
+  compilation_tools:
+    - javac (OpenJDK)
+    - Eclipse Compiler (ecj)
+  package_registries:
+    - Maven Central
+    - JCenter (deprecated)
+    - GitHub Packages
+  install_windows:
+    - Oracle JDK installer
+    - OpenJDK (Adoptium) installer
+    - winget
+    - Chocolatey
+  install_unix:
+    - apt (openjdk)
+    - pacman (jdk-openjdk)
+    - Homebrew (openjdk)
+    - SDKMAN
+
+- language: Go
+  build_tools:
+    - go build
+    - make
+    - Bazel
+  package_managers:
+    - go mod
+    - dep (deprecated)
+  project_managers:
+    - go mod init
+    - go create
+  compilation_tools:
+    - go compiler (gc)
+    - gccgo
+  package_registries:
+    - proxy.golang.org
+    - GitHub
+    - GitLab
+  install_windows:
+    - golang.org installer
+    - winget
+    - Chocolatey
+  install_unix:
+    - apt (golang)
+    - pacman (go)
+    - Homebrew (go)
+    - snap
+
+- language: Rust
+  build_tools:
+    - cargo
+    - make
+    - Bazel
+  package_managers:
+    - cargo
+  project_managers:
+    - cargo new
+    - cargo init
+  compilation_tools:
+    - rustc
+    - LLVM
+  package_registries:
+    - crates.io
+    - GitHub
+  install_windows:
+    - rustup-init.exe
+    - winget
+    - Chocolatey
+  install_unix:
+    - rustup (script)
+    - apt (via rustup)
+    - pacman (rust)
+    - Homebrew (rust)
+
+- language: C / C++
+  build_tools:
+    - Make
+    - CMake
+    - Ninja
+    - Meson
+    - Bazel
+  package_managers:
+    - vcpkg
+    - conan
+    - conda
+    - apt (system packages)
+  project_managers:
+    - CMake (cmake-init)
+    - Meson (meson init)
+    - Conan (conan new)
+  compilation_tools:
+    - GCC
+    - Clang
+    - MSVC
+  package_registries:
+    - vcpkg registry
+    - Conan Center
+    - conda-forge
+  install_windows:
+    - Visual Studio Build Tools
+    - MSYS2
+    - winget (LLVM, GCC via MSYS2)
+    - Chocolatey
+  install_unix:
+    - apt (build-essential, clang)
+    - pacman (gcc, clang)
+    - Homebrew (gcc, llvm)
+
+- language: Ruby
+  build_tools:
+    - Rake
+    - Bundler
+    - make
+  package_managers:
+    - gem
+    - Bundler
+  project_managers:
+    - bundle gem
+    - rails new (for Rails)
+  compilation_tools:
+    - Ruby (MRI interpreter)
+    - JRuby (compiles to Java bytecode)
+  package_registries:
+    - RubyGems
+    - GitHub Packages
+  install_windows:
+    - RubyInstaller
+    - winget
+    - Chocolatey
+  install_unix:
+    - apt (ruby-full)
+    - pacman (ruby)
+    - Homebrew (ruby)
+    - rbenv
+    - RVM
+
+- language: PHP
+  build_tools:
+    - Composer
+    - phing
+    - make
+  package_managers:
+    - Composer
+    - PEAR (legacy)
+  project_managers:
+    - Composer create-project
+    - Laravel installer
+  compilation_tools:
+    - PHP (interpreter)
+    - HHVM (HipHop Virtual Machine)
+  package_registries:
+    - Packagist
+    - GitHub
+  install_windows:
+    - windows.php.net installer
+    - winget
+    - Chocolatey
+    - XAMPP
+  install_unix:
+    - apt (php)
+    - pacman (php)
+    - Homebrew (php)
+    - Laravel Herd (macOS)
+
+- language: C#
+  build_tools:
+    - MSBuild
+    - dotnet CLI
+    - Cake
+  package_managers:
+    - NuGet
+    - dotnet add package
+  project_managers:
+    - dotnet new
+    - Visual Studio templates
+  compilation_tools:
+    - Roslyn (csc)
+    - Mono (mcs)
+  package_registries:
+    - NuGet.org
+    - GitHub Packages
+  install_windows:
+    - Visual Studio Installer
+    - dotnet SDK installer
+    - winget
+    - Chocolatey
+  install_unix:
+    - apt (dotnet-sdk)
+    - pacman (dotnet-sdk)
+    - Homebrew (dotnet-sdk)
+
+- language: Swift
+  build_tools:
+    - Swift Package Manager (swift build)
+    - Xcode
+    - Make
+  package_managers:
+    - Swift Package Manager
+    - CocoaPods (iOS/macOS)
+    - Carthage (iOS/macOS)
+  project_managers:
+    - swift package init
+    - Xcode templates
+  compilation_tools:
+    - Swift compiler (swiftc)
+  package_registries:
+    - Swift Package Index
+    - GitHub
+    - CocoaPods Trunk
+  install_windows:
+    - swift.org installer (experimental)
+    - winget (swift)
+  install_unix:
+    - apt (swift-lang)
+    - Homebrew (swift)
+    - swift.org tarball
+
+- language: Kotlin
+  build_tools:
+    - Gradle
+    - Maven
+  package_managers:
+    - Gradle (dependencies)
+    - Maven
+  project_managers:
+    - Gradle init
+    - IntelliJ IDEA templates
+  compilation_tools:
+    - kotlinc (Kotlin compiler)
+  package_registries:
+    - Maven Central
+    - Google Maven (for Android)
+    - GitHub Packages
+  install_windows:
+    - kotlinlang.org installer
+    - winget
+    - Chocolatey
+    - IntelliJ IDEA (bundled)
+  install_unix:
+    - apt (kotlin)
+    - pacman (kotlin)
+    - Homebrew (kotlin)
+    - SDKMAN
+
+- language: TypeScript
+  build_tools:
+    - TypeScript Compiler (tsc)
+    - webpack
+    - esbuild
+    - swc
+  package_managers:
+    - npm
+    - yarn
+    - pnpm
+  project_managers:
+    - tsc --init
+    - create-react-app (with TypeScript)
+    - Vite
+  compilation_tools:
+    - tsc
+    - swc
+    - esbuild
+  package_registries:
+    - npm registry
+    - GitHub Packages
+  install_windows:
+    - npm install -g typescript
+    - winget (Node.js, then npm)
+    - Chocolatey
+  install_unix:
+    - npm install -g typescript
+    - apt (nodejs, then npm)
+    - pacman (nodejs, then npm)
+    - Homebrew (node, then npm)
+
+- language: R
+  build_tools:
+    - R CMD build
+    - devtools
+    - make
+  package_managers:
+    - install.packages()
+    - pak
+    - renv
+  project_managers:
+    - RStudio projects
+    - usethis::create_package()
+  compilation_tools:
+    - R (interpreter)
+    - Rcpp (C++ integration)
+  package_registries:
+    - CRAN
+    - Bioconductor
+    - GitHub
+  install_windows:
+    - cran.r-project.org installer
+    - winget
+    - Chocolatey
+  install_unix:
+    - apt (r-base)
+    - pacman (r)
+    - Homebrew (r)
+
+- language: Perl
+  build_tools:
+    - Makefile.PL (ExtUtils::MakeMaker)
+    - Build.PL (Module::Build)
+  package_managers:
+    - cpan
+    - cpanm
+    - Carton
+  project_managers:
+    - h2xs
+    - module-starter
+  compilation_tools:
+    - perl (interpreter)
+  package_registries:
+    - CPAN
+  install_windows:
+    - Strawberry Perl
+    - ActivePerl
+    - winget
+    - Chocolatey
+  install_unix:
+    - apt (perl)
+    - pacman (perl)
+    - Homebrew (perl)
+    - plenv
+
+- language: Scala
+  build_tools:
+    - sbt
+    - Maven
+    - Gradle
+    - Mill
+  package_managers:
+    - sbt (libraryDependencies)
+    - Maven
+  project_managers:
+    - sbt new
+    - Maven archetype
+  compilation_tools:
+    - scalac
+    - Zinc (incremental)
+  package_registries:
+    - Maven Central
+    - GitHub Packages
+  install_windows:
+    - scala-lang.org installer
+    - sbt installer
+    - winget
+    - Chocolatey
+  install_unix:
+    - apt (scala, sbt)
+    - pacman (scala, sbt)
+    - Homebrew (scala, sbt)
+    - Coursier
+
+- language: Erlang
+  build_tools:
+    - rebar3
+    - erlang.mk
+    - make
+  package_managers:
+    - rebar3 (built-in)
+    - hex
+  project_managers:
+    - rebar3 new
+  compilation_tools:
+    - erlc (Erlang compiler)
+  package_registries:
+    - hex.pm
+    - GitHub
+  install_windows:
+    - erlang.org installer
+    - winget
+    - Chocolatey
+  install_unix:
+    - apt (erlang)
+    - pacman (erlang)
+    - Homebrew (erlang)
+    - kerl (version manager)
+
+- language: Elixir
+  build_tools:
+    - mix
+    - make
+  package_managers:
+    - mix (via hex)
+  project_managers:
+    - mix new
+    - mix phx.new (Phoenix framework)
+  compilation_tools:
+    - elixirc
+    - Erlang compiler (erlc) as backend
+  package_registries:
+    - hex.pm
+  install_windows:
+    - elixir-lang.org installer
+    - winget
+    - Chocolatey
+  install_unix:
+    - apt (elixir)
+    - pacman (elixir)
+    - Homebrew (elixir)
+    - asdf
+
+- language: Haskell
+  build_tools:
+    - Cabal
+    - Stack
+    - make
+  package_managers:
+    - cabal-install
+    - stack
+  project_managers:
+    - cabal init
+    - stack new
+  compilation_tools:
+    - ghc (Glasgow Haskell Compiler)
+  package_registries:
+    - Hackage
+    - Stackage
+  install_windows:
+    - ghcup (recommended)
+    - Haskell Platform
+    - winget
+    - Chocolatey
+  install_unix:
+    - ghcup (recommended)
+    - apt (ghc, cabal-install)
+    - pacman (ghc, cabal-install)
+    - Homebrew (ghc, cabal-install)
+
+- language: Zig
+  build_tools:
+    - zig build (built-in)
+  package_managers:
+    - zigmod
+    - gyro (experimental)
+    - built-in package manager (zig 0.11+, experimental)
+  project_managers:
+    - zig init-exe
+    - zig init-lib
+  compilation_tools:
+    - zig compiler
+  package_registries:
+    - GitHub (no central registry)
+  install_windows:
+    - ziglang.org download
+    - winget
+    - Chocolatey
+  install_unix:
+    - ziglang.org download
+    - pacman (zig)
+    - Homebrew (zig)
+    - snap
+
+- language: Julia
+  build_tools:
+    - Pkg (built-in)
+    - Makefile (optional)
+  package_managers:
+    - Pkg (built-in)
+  project_managers:
+    - Pkg.generate
+    - `] generate` (REPL)
+  compilation_tools:
+    - julia (JIT compiler)
+    - precompile (package precompilation)
+  package_registries:
+    - General (official registry)
+    - JuliaHub
+    - GitHub
+  install_windows:
+    - julialang.org installer
+    - winget
+    - Chocolatey
+  install_unix:
+    - apt (julia)
+    - pacman (julia)
+    - Homebrew (julia)
+    - snap
