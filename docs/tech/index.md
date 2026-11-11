@@ -13,6 +13,7 @@
 
 ## 基础设施
 
+- [systemd 与 KISS：简单究竟属于谁？](systemd-kiss.md)
 - [容器技术演进：从进程隔离到微虚拟机与 WebAssembly](containers.md)
 - [云服务对比](cloud.md)
 - [开发工具链对比](devtools.md)
