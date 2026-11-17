@@ -5,8 +5,8 @@
 ## 本地构建
 
 ```bash
-uvx --from zensical==0.0.62 zensical build --clean --strict
-uvx --from zensical==0.0.62 zensical build --clean --strict --config-file zensical.en.toml
+uvx --from zensical==0.1.0 zensical build --clean --strict
+uvx --from zensical==0.1.0 zensical build --clean --strict --config-file zensical.en.toml
 ```
 
 生成的 `site/` 为构建产物，不纳入版本控制（见 `.gitignore`）。
