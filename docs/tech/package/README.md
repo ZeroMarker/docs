@@ -46,6 +46,7 @@ installer is better handled manually.
 | `apt` | Debian/Ubuntu | Debian family package manager. |
 | `dnf`/`yum` | Fedora/RHEL/CentOS | Red Hat family package managers. |
 | `apk` | Alpine Linux | Alpine package manager. |
+| `flatpak` | Linux desktop | Sandboxed desktop apps from Flathub. See [Flatpak 与 Flathub](unix/flatpak.md). |
 | `sdkman` | Cross-platform | SDK manager for JVM ecosystem tools. |
 | `mise` | Cross-platform | Runtime/tool version manager. |
 | `pip` | Python | Python package manager. |
